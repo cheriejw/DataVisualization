@@ -44,4 +44,4 @@ jspm_packages
 *.tgz
 
 # Other things
-./scrap/*
+/scrap
