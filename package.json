@@ -1,0 +1,26 @@
+{
+  "name": "voicevisualization",
+  "version": "1.0.0",
+  "description": "a hack using amazon echo and voice recognition help you improve your english and show you a data visualization of your accents.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheriejw/VoiceVisualization.git"
+  },
+  "keywords": [
+    "voice",
+    "recognition",
+    "data",
+    "visualization",
+    "d3"
+  ],
+  "author": "cherie woo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cheriejw/VoiceVisualization/issues"
+  },
+  "homepage": "https://github.com/cheriejw/VoiceVisualization#readme"
+}
