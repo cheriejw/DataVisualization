@@ -38,7 +38,7 @@ io.on('connection', function(client){
 
   client.on('requestWord', function(_data){
     var spawn = require("child_process").spawn;
-    var process = spawn('python', ['public/dict.py', _data]);
+    var process = spawn('python2', ['public/dict.py', _data]);
     // process.stdout.on('data', function(_data){
     // });
     jsonContent = readLocalFile('words/'+_data+".json", function(_data){
