@@ -17,8 +17,13 @@ dictExplore.controller('UIController', function($scope,socket){
 
 	$scope.display = function(_word){
 
-		$scope.focusedWord = _word;
+		$scope.focusedWord = _word.charAt(0).toUpperCase() + _word.slice(1);
 		$scope.$apply();
+	}
+
+	$scope.search = function(_word){
+		socket.emit('requestWord', _word);
+		$scope.display(_word);
 	}
 
 	socket.on('json', function(_jsonObj){

@@ -10,8 +10,8 @@
 			<div class="navbar-header">
 				<h1>{{focusedWord}}</h1>
 			<form class="form-inline float-xs-left">
-				<input class="form-control" type="text" placeholder="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+				<input class="form-control" type="text" ng-model="searchBox" placeholder="Search">
+					<button class="btn btn-outline-success" type="submit" ng-click="search(searchBox)">Search</button>
 			</form>
 			</div>
 		</nav>
