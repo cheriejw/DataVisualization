@@ -4,9 +4,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   min-height: 100%;
   display: block;
-}
-
-html {
   background-image: url("http://www.flaginstitute.org/wp/wp-content/uploads/2015/11/Liechtenstein-1852-1921.png");
   background-repeat: repeat;
   background-size: 100%;
