@@ -56,7 +56,7 @@ const colors = ["gold", "yellow", "greenyellow", "yellowgreen", "mediumseagreen"
                 "mediumturquoise", "turquoise", "deepskyblue", "mediumslateblue", "mediumpurple", "mediumvioletred", 
                 "red", "orangered", "salmon", "tomato", "orange"];
 
-var jsonCircles = [{ "x_axis": middle, "y_axis": ymid, "radius": rad, "color" : "yellow" }]; //7 circles
+var jsonCircles = []; //7 circles
 
 var len = colors.length;
 
@@ -67,12 +67,12 @@ var len = colors.length;
 var middle = (window.innerWidth/2);
 var unit = (middle/4); //theyre all this many spaces appart; one unit
 var rad = unit/3;
-var ymid = (window.innerHeight/4);
-var syndec = middle;
+var ymid = (window.innerHeight/3);
+var syndec = middle + unit;
 
 for(syno in syn){
     syndec = syndec - unit;
-    jsonCircles.push({"x_axis": syndec, "y_axis": ymid, "radius": rad, "color" : colors[syno%len]});
+    jsonCircles.push({"x_axis": syndec, "y_axis": ymid, "radius": rad, "color" : colors[syno%len], "word" : syn[syno]});
 }
 
 
@@ -82,8 +82,6 @@ for(syno in syn){
 //     return d.x_axis;
 // }
 
-
-  
 
 // var jsonCircles = [ //the box it produces in is 0-200 units.
 //   { "x_axis": middle, "y_axis": ymid, "radius": rad, "color" : "yellow" }, //7 circles
@@ -114,6 +112,9 @@ var circles = svgContainer.selectAll("circle")
                         .data(jsonCircles) //sending json attributes. init d.
                         .enter()
                         .append("circle");
+                        //.append("word");
+
+//var words = 
 
 
 // function name (d) { return d.x_axis; };
@@ -129,7 +130,14 @@ var circleAttributes = circles
                         .on('click', function(d){
                             
                             //console.log(d.x_axis); //gives me the location
-                            var x = d.x_axis;
+							
+							//Angular controller interfacing
+							var dom_el = document.querySelector('[ng-controller="UIController"]');
+							var ng_el = angular.element(dom_el);
+							var ng_el_scope = ng_el.scope();
+							ng_el_scope.click();
+                            
+							var x = d.x_axis;
                             console.log(x);
                             d3.selectAll("circle").transition() //FUCK YEAH!
                                 .duration(1500)
