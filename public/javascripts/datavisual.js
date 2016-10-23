@@ -150,7 +150,7 @@ node.append("text")
 
 node.append("circle")
 .attr("cx", function (d) { return d.x_axis; })
-                        .attr("x", function (d) { return d.x_axis;}) 
+                        //.attr("x", function (d) { return d.x_axis;}) 
                         .attr("cy", function (d) { return d.y_axis;})
                         .attr("r", function (d) { return d.radius; })
                         //.attr("w", function (d) { return d.word; })
