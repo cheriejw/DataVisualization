@@ -111,8 +111,14 @@ var node = svgContainer.selectAll(".node")
   .data(jsonCircles)
   .enter().append("g")
   .attr("class", "node")
-  .attr("transform", function(d) { return "translate (" + d.x + "," + d.y + ")";})
-  .on('click', function(d){
+  .attr("transform", function(d) { return "translate (" + d.x + "," + d.y + ")";});
+
+var sel = svgContainer.selectAll("g");
+	
+console.log(sel);
+
+    node.on('click', function(d){
+							console.log(d);
                             var dom_el = document.querySelector('[ng-controller="UIController"]');
                             var ng_el = angular.element(dom_el);
                             var ng_el_scope = ng_el.scope();
@@ -135,7 +141,7 @@ var node = svgContainer.selectAll(".node")
                                 .delay(100)
                                 .attr("cx", function (d) { d.x_axis = d.x_axis - (tem - middle); return d.x_axis; });
                         });
-node.append("text")
+/*node.append("text")
                   .attr("x", function (d) {return d.x_axis;})
                   .attr("y", function (d) {return d.y_axis + yunit;})
                   .text( function(d) { return d.word; })
@@ -143,7 +149,7 @@ node.append("text")
                   //console.log(this.text)
                   .attr("font-family", "sans-serif")
                   .attr("font-size", "20px")
-                  .attr("fill", "white");
+                  .attr("fill", "white");*/
 
 
 node.append("circle")
