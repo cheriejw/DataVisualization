@@ -133,14 +133,17 @@ var circleAttributes = circles
                         .on('click', function(d){
                             
                             //console.log(d.x_axis); //gives me the location
-							//Angular controller interfacing
-							var dom_el = document.querySelector('[ng-controller="UIController"]');
-							var ng_el = angular.element(dom_el);
-							var ng_el_scope = ng_el.scope();
-							ng_el_scope.click();
-                            console.log(d.word); //gives me the location
+
+    							         /*** Angular controller interfacing ***/
+              							var dom_el = document.querySelector('[ng-controller="UIController"]');
+              							var ng_el = angular.element(dom_el);
+              							var ng_el_scope = ng_el.scope();
+                            ng_el_scope.display(d.word);
+                            ng_el_scope.requestWord(d.word);
+
+                            // console.log(d.word); //gives me the location
                             var x = d.x_axis;
-                            console.log(x);
+                            // console.log(x);
                             d3.selectAll("circle").transition() //FUCK YEAH!
                                 .duration(1500)
                                 .delay(100) //wait a while before you move
@@ -151,6 +154,7 @@ var circleAttributes = circles
                                 //.attr("cy", function (d) { return d.y_axis + unit; })
                                 //console.log(d.x_axis);
                         });
+
                         // .transition()
                         // .duration(1500)
                         // .delay(1000) //wait a while before you move

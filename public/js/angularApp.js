@@ -2,9 +2,20 @@ var dictExplore = angular.module('dictExplore', []);
 
 
 dictExplore.controller('UIController', function($scope,socket){
-	$scope.test = "hahahahahah";
+
+	$scope.focusedWord = "";
 	$scope.click = function(){
 		socket.send("test");
+	}
+
+	$scope.requestWord = function(_word){
+		socket.emit('requestWord', _word);
+	}
+
+	$scope.display = function(_word){
+
+		$scope.focusedWord = _word;
+		$scope.$apply();
 	}
 
 
@@ -13,11 +24,14 @@ dictExplore.controller('UIController', function($scope,socket){
 
 
 dictExplore.service('socket', function(){
-	console.log('socket init');
 	var socket = io.connect();
 
 	var send = function(_data){
 		socket.emit("data", _data);
+	}
+
+	var emit = function(_event, _data){
+		socket.emit(_event, _data);
 	}
 
 	socket.on('data', function(_data){
@@ -31,6 +45,7 @@ dictExplore.service('socket', function(){
 
 	return {
 		send	: send,
-		on 		: on
+		on 		: on,
+		emit 	: emit
 	}
 });

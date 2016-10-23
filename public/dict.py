@@ -40,8 +40,19 @@ def main():
 		#getSlang(dictWordContent, soupDictionary)
 
 	jsonObject = json.dumps(dictWordContent)
-	print jsonObject
-	sys.stdout.flush()	
+	#print jsonObject
+	printToFile(strWord,jsonObject)
+
+
+def printToFile(_word, _json):
+
+	if not os.path.exists('words'):
+		os.makedirs('words')
+
+	f = open("words/"+_word+".json", 'w')
+	f.write(_json)
+	f.close()
+
 
 def getOrigin(_dict, _soup):
 	_dict['origin'] = {}
@@ -111,7 +122,8 @@ def getThesaurus(_dict, _soup):
 		# Find Antonyms
 		listAntonyms = []
 		devAnt = divSynonyms[0].findAll("section", {"class": "antonyms"})
-		if len(devAnt):
+
+		if len(devAnt):		
 			ulAnt = devAnt[0].findAll("ul", {"class": "list"})
 			for ul in ulAnt:
 				for a in ul.find_all('a'):
