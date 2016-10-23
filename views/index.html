@@ -17,15 +17,20 @@
 		</nav>
 
 		<!-- Displaying definitions -->
-		<div>
-			<ol
-				ng-repeat="(cate, contents) in jsonWord.def">
-				{{cate}}
-				<li
-					ng-repeat="con in contents">
-					{{con}}
-				</li>
-			</ol>
+		<div class="row">
+			<div class="col-md-3"></div>	
+			<div class="col-md-6 centerContent">
+				<ol
+
+					ng-repeat="(cate, contents) in jsonWord.def">
+					{{cate}}
+					<li
+						ng-repeat="con in contents">
+						{{con}}
+					</li>
+				</ol>
+			</div>
+			<div class="col-md-3"></div>
 		</div>
 
 

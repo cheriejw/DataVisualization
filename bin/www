@@ -62,14 +62,24 @@ server.on('listening', onListening);
 
 function readLocalFile(_path, _callback){
   fs = require('fs')
-  fs.readFile(_path, 'utf8', function(err, data){
-    if(err){
-      // readLocalFile(_path);
-      return console.log(err);
-    }
-    // console.log(data);
-    _callback(data);
-  });
+  var attempt = 5;
+  var interval = setInterval(function()
+  {
+      fs.readFile(_path, 'utf8', function(err, data){
+        if(err){
+          attempt -= 1;
+          if(attempt <= 0){
+            clearInterval(interval);
+          }
+          return console.log(err);
+        }
+        // console.log(data);
+        _callback(data);
+        clearInterval(interval);
+      }); 
+
+  }, 150);
+  
   
 }
 
