@@ -6,6 +6,12 @@ dictExplore.controller('UIController', function($scope,socket){
 	$scope.click = function(){
 		socket.send("test");
 	}
+
+
+
+
+
+	
 });
 
 

@@ -127,6 +127,7 @@ var circleAttributes = circles
                         .style("fill", function(d) { return d.color; })
                         //performing transitions
                         .on('click', function(d){
+                            
                             //console.log(d.x_axis); //gives me the location
                             var x = d.x_axis;
                             console.log(x);

@@ -32,8 +32,14 @@ io.on('connection', function(client){
   client.emit('data', "from server");
   client.on('data', function(data){
     console.log('web send data: ' + data);
-  });
+    var spawn = require("child_process").spawn;
+    // var process = spawn('touch', ['test.touch']);
+    var process = spawn('python',["public/dict.py"]);
+    process.stdout.on('data', function (_data){
 
+      console.log(JSON.parse(_data));
+    }); 
+  });
 
   client.on('disconnect', function(){
 
