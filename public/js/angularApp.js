@@ -9,9 +9,6 @@ dictExplore.controller('UIController', function($scope,socket){
 
 
 
-
-
-	
 });
 
 
@@ -28,14 +25,8 @@ dictExplore.service('socket', function(){
 	})
 
 
-	var on = function(_callback){
-		// socket.on('data', function(_data){
-		// 	console.log(_data);
-		// 	_callback();
-		// });
-		// socket.on('message', function(_data){
-		// 	console.log(_data);
-		// })
+	var on = function( _event , _callback){
+		socket.on(_event, _callback);
 	}
 
 	return {
