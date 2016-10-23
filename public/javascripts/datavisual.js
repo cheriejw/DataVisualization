@@ -98,6 +98,7 @@ for(syno in syn){
 // var scrollCircle = d3.select(jsonCircles)
 // 						.transition()
 
+//console.log(d3.select("body").append("svg").attr("width",200).attr("height",200).selectAll("text").data(jsonCircles).enter().append("text"));
 
 //make an svg container
 var svgContainer = d3.select("body").append("div")
@@ -125,10 +126,12 @@ var circleAttributes = circles
                         //.attr("cx", xaxis(d)) ; 
                         .attr("cy", function (d, i, nodes) { return d.y_axis;})
                         .attr("r", function (d) { return d.radius; })
-                        .style("fill", function(d) { return d.color; })
+                        .attr("w", function (d) { return d.word; })
+                        //.text(function(d) { return d.word; })
+                        .style("fill", function(d) { return d.color; }) //a style to fill
                         //performing transitions
                         .on('click', function(d){
-                            //console.log(d.x_axis); //gives me the location
+                            console.log(d.word); //gives me the location
                             var x = d.x_axis;
                             console.log(x);
                             d3.selectAll("circle").transition() //FUCK YEAH!
@@ -150,3 +153,17 @@ var circleAttributes = circles
                         //.each("end", function() { d3.select(this).attr("fill", "blue"); }); //at end on transition
  
 //draw all data: in frame and out of frame
+//add to svgcontainer.
+var texts = svgContainer.selectAll("text")
+                        .data(jsonCircles)
+                        .enter()
+                        .append("text");
+
+var textLabels = texts
+                  .attr("x", function(d) { return d.cx; })
+                  .attr("y", function(d) { return d.cy; })
+                  .text( function(d) { return d.w; })
+                  //console.log(this.text)
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", "20px")
+                  .attr("fill", "red");
