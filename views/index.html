@@ -12,6 +12,18 @@
 			</div>
 		</nav>
 
+		<!-- Displaying definitions -->
+		<div>
+			<ol
+				ng-repeat="(cate, contents) in jsonWord.def">
+				{{cate}}
+				<li
+					ng-repeat="con in contents">
+					{{con}}
+				</li>
+			</ol>
+		</div>
+
 
 	<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"

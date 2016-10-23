@@ -22,7 +22,7 @@ dictExplore.controller('UIController', function($scope,socket){
 	}
 
 	socket.on('json', function(_jsonObj){
-		console.log(_jsonObj);
+		// console.log(_jsonObj);
 		// Parse json object
 		$scope.jsonWord = JSON.parse(_jsonObj);
 		$scope.$apply();
