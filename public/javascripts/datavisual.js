@@ -1,5 +1,8 @@
 //var words = ["Saab", "Volvo", "BMW", "Updated"]; //will be replaced with values.
-// var roots = 
+var roots = [
+      "late 14c., \"small vessel used in assaying precious metals,\" from Old French test, from Latin testum \"earthen pot,\" related to testa \"piece of burned clay, earthen pot, shell\" (cf. Latin testudo \"tortoise\") and texere \"to weave\" (cf. Lithuanian tistas \"vessel made of willow twigs;\" see texture (n.)).  Sense of \"trial or examination to determine the correctness of something\" is recorded from 1590s. The connecting notion is \"ascertaining the quality of a metal by melting it in a pot.\" Test Act was the name given to various laws in English history meant to exclude Catholics and Nonconformists from office, especially that of 1673, repealed 1828. Test drive (v.) is first recorded 1954.",
+      "1748, \"to examine the correctness of,\" from test (n.). Related: Tested; testing."
+    ]
 var syn = [
       "search",
       "attempt",
@@ -27,29 +30,11 @@ var syn = [
       "criterion",
       "yardstick",
       "confirmation",
-      "exam",
-      "fling",
-      "scrutiny",
-      "preliminary",
-      "probing",
-      "substantiation",
-      "catechism",
-      "ordeal",
-      "try",
-      "tryout",
-      "oral",
-      "touchstone",
-      "proof",
-      "dry run",
-      "trial and error",
-      "trial run",
-      "countdown",
-      "comp",
-      "verification",
-      "blue book",
-      "pop quiz"
+      "exam"
     ]; //syn.push ("word");
-// var ant = 
+var ant = [
+      "conclusion"
+    ];
 // var hist = 
 
 const colors = ["gold", "yellow", "greenyellow", "yellowgreen", "mediumseagreen", "lightseagreen",
@@ -69,11 +54,24 @@ var unit = (middle/4); //theyre all this many spaces appart; one unit
 var rad = unit/3;
 var ymid = (window.innerHeight/3);
 var syndec = middle + unit;
-var yunit = ymid/4;
+var antdec = middle;
+var yunit = ymid/2;
+var rootdec = ymid + yunit;
 
 for(syno in syn){
     syndec = syndec - unit;
     jsonCircles.push({"x_axis": syndec, "y_axis": ymid, "radius": rad, "color" : colors[syno%len], "word" : syn[syno]});
+}
+
+for(anto in ant){
+    antdec = antdec + unit;
+    jsonCircles.push({"x_axis": antdec, "y_axis": ymid, "radius": rad, "color" : colors[((len-1)-anto)%len], "word" : ant[anto]});
+}
+
+for(root in roots){ //if theres defs
+    rootdec = rootdec - yunit; //only in the middle
+    jsonCircles.push({"x_axis": middle, "y_axis": rootdec, "radius": rad, "color" : colors[(len-root)%len], "word" : roots[root]});
+
 }
 
 
@@ -123,12 +121,12 @@ var node = svgContainer.selectAll(".node")
                             //console.log(d.word); //gives me the location
                             var tem = d.x_axis;
                             // console.log(x);
-                            d3.selectAll("text", "circle").transition() //FUCK YEAH!
-                                .duration(1500)
-                                .delay(100) //wait a while before you move
-                                // .attr("cx", function (d) { var x = d.x_axis; d.x_axis = d.x_axis + (x - middle); return d.x_axis; }) //this expands
-                                .attr("x", function (d) { d.x_axis = (d.x_axis - (tem - middle)); return d.x_axis; });
-                                // .attr("cx", shiftx(d))
+                            // d3.selectAll("text").transition() //FUCK YEAH!
+                            //     .duration(1500)
+                            //     .delay(100) //wait a while before you move
+                            //     // .attr("cx", function (d) { var x = d.x_axis; d.x_axis = d.x_axis + (x - middle); return d.x_axis; }) //this expands
+                            //     .attr("x", function (d) { d.x_axis = (d.x_axis - (tem - middle)); return d.x_axis; });
+                            //     // .attr("cx", shiftx(d))
                                 //.transition()
                                 //.attr("cy", function (d) { return d.y_axis + unit; })
                                 //console.log(d.x_axis);
@@ -144,7 +142,7 @@ node.append("text")
                   //.text("test")
                   //console.log(this.text)
                   .attr("font-family", "sans-serif")
-                  .attr("font-size", "30px")
+                  .attr("font-size", "20px")
                   .attr("fill", "white");
 
 
