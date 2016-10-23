@@ -4,31 +4,31 @@ var words = ["Saab", "Volvo", "BMW", "Updated"]; //will be replaced with values.
 // var ant = 
 // var hist = 
 
-for(word in words){ //for a word in words
-	console.log(words[word]);
-}
+// for(word in words){ //for a word in words
+// 	console.log(words[word]);
+// }
+
+var middle = (window.innerWidth/2);
+var unit = (middle/4); //theyre all this many spaces appart; one unit
+var rad = unit/4;
+var ymid = (window.innerHeight/4);
 
 var jsonCircles = [ //the box it produces in is 0-200 units.
-  { "x_axis": 20, "y_axis": 100, "radius": 20, "color" : "green" },
-  { "x_axis": 70, "y_axis": 100, "radius": 20, "color" : "purple"},
-  { "x_axis": 200, "y_axis": 100, "radius": 20, "color" : "red"}]; //this is an array of objects
+  { "x_axis": middle, "y_axis": ymid, "radius": rad, "color" : "green" }, //7 circles
+  { "x_axis": unit, "y_axis": ymid, "radius": rad, "color" : "purple"},
+  { "x_axis": unit*2, "y_axis": ymid, "radius": rad, "color" : "red"}, //this is an array of objects
+  { "x_axis": unit*3, "y_axis": ymid, "radius": rad, "color" : "blue" },
+  { "x_axis": unit*5, "y_axis": ymid, "radius": rad, "color" : "green" }, //7 circles
+  { "x_axis": unit*6, "y_axis": ymid, "radius": rad, "color" : "purple"},
+  { "x_axis": unit*7, "y_axis": ymid, "radius": rad, "color" : "red"}];
+//var test = d3.select
 
-//break
+
+//breake
 // var scrollCircle = d3.select(jsonCircles)
 // 						.transition()
 
-// d3.selectAll("circles").transition()
-//     .delay(function(d, i) { return i * 50; })
-//     .on("click", function repeat() {
-//         d3.active(this)
-//             .style("fill", "red")
-//           .transition()
-//             .style("fill", "green")
-//           .transition()
-//             .style("fill", "blue")
-//           .transition()
-//             .on("start", repeat);
-//       });
+
 //make an svg container
 var svgContainer = d3.select("body").append("div")
 						.classed("svg-container", true) //classed means css
@@ -39,20 +39,35 @@ var svgContainer = d3.select("body").append("div")
 
 //draw circles
 var circles = svgContainer.selectAll("circle")
-                        .data(jsonCircles) //sending json attributes.
+                        .data(jsonCircles) //sending json attributes. init d.
                         .enter()
                         .append("circle");
 
+
+// function name (d) { return d.x_axis; };
+
+//i want it to be set up to middle relative.
 var circleAttributes = circles
                         .attr("cx", function (d) { return d.x_axis; })
-                        .attr("cy", function (d) { return d.y_axis; })
+                        //.attr("cx", name(this))
+                        .attr("cy", function (d, i, nodes) { return d.y_axis;})
                         .attr("r", function (d) { return d.radius; })
                         .style("fill", function(d) { return d.color; })
                         //performing transitions
-                        .transition()
-                        .duration(1500)
-                        .delay(1000) //wait a while before you move
-                        .attr("cx", "100")
-                        .transition()
-                        .attr("cy", "130");
+                        .on('click', function(d){
+                            console.log(d.x_axis); //gives me the location
+                            d.transition()
+                                .duration(1500)
+                                .delay(1000) //wait a while before you move
+                                .attr("cx" , function (d) { return d.x_axis + 30; })
+                                .transition()
+                                .attr("cy", "130");
+                        });
+                        // .transition()
+                        // .duration(1500)
+                        // .delay(1000) //wait a while before you move
+                        // .attr("cx" , function (d) { return d.x_axis + 30; })
+                        // .transition()
+                        // .attr("cy", "130");
+                        //.each("end", function() { d3.select(this).attr("fill", "blue"); }); //at end on transition
  

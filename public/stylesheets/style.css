@@ -8,15 +8,18 @@ body {
 
 html {
   padding: 0px;
-  height: 100%;
 }
 
 a {
   color: #00B7FF;
 }
 
+h1 {
+  color: white;
+}
+
 .svg-container {
-    display: inline-block;
+    display: block;
     position: relative;
     width: 100%;
     padding-bottom: 100%; /* aspect ratio */
