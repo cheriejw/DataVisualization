@@ -18,7 +18,6 @@ dictExplore.controller('UIController', function($scope,socket){
 	$scope.display = function(_word){
 
 		$scope.focusedWord = _word.charAt(0).toUpperCase() + _word.slice(1);
-		$scope.$apply();
 	}
 
 	$scope.search = function(_word){
@@ -29,6 +28,7 @@ dictExplore.controller('UIController', function($scope,socket){
 	socket.on('json', function(_jsonObj){
 		// console.log(_jsonObj);
 		// Parse json object
+		// console.log(_jsonObj);
 		$scope.jsonWord = JSON.parse(_jsonObj);
 		$scope.$apply();
 
