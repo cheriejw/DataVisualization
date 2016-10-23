@@ -4,9 +4,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   min-height: 100%;
   display: block;
-}
-
-html {
+  background-image: url("http://www.flaginstitute.org/wp/wp-content/uploads/2015/11/Liechtenstein-1852-1921.png");
+  background-repeat: repeat;
+  background-size: 100%;
+  background-position: center; 
   padding: 0px;
 }
 
@@ -41,5 +42,12 @@ h1 {
 }
 
 /*.perspective { //makes focus
-  
+
 }*/
+.navbar-header {
+	float: left;
+	padding: 15px;
+	text-align: center;
+	width: 100%;
+}
+.navbar-brand {float:none;}
