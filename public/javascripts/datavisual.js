@@ -77,18 +77,6 @@ for(root in roots){ //if theres defs
 //     return d.x_axis;
 // }
 
-
-// var jsonCircles = [ //the box it produces in is 0-200 units.
-//   { "x_axis": middle, "y_axis": ymid, "radius": rad, "color" : "yellow" }, //7 circles
-//   { "x_axis": unit, "y_axis": ymid, "radius": rad, "color" : "purple"},
-//   { "x_axis": unit*2, "y_axis": ymid, "radius": rad, "color" : "red"}, //this is an array of objects
-//   { "x_axis": unit*3, "y_axis": ymid, "radius": rad, "color" : "blue" },
-//   { "x_axis": unit*5, "y_axis": ymid, "radius": rad, "color" : "green" }, //7 circles
-//   { "x_axis": unit*6, "y_axis": ymid, "radius": rad, "color" : "purple"},
-//   { "x_axis": unit*7, "y_axis": ymid, "radius": rad, "color" : "#000000"}];
-//var test = d3.select
-
-
 //breake
 // var scrollCircle = d3.select(jsonCircles)
 // 						.transition()
