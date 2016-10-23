@@ -14,7 +14,7 @@ var rad = unit/4;
 var ymid = (window.innerHeight/4);
 
 var jsonCircles = [ //the box it produces in is 0-200 units.
-  { "x_axis": middle, "y_axis": ymid, "radius": rad, "color" : "green" }, //7 circles
+  { "x_axis": middle, "y_axis": ymid, "radius": rad, "color" : "yellow" }, //7 circles
   { "x_axis": unit, "y_axis": ymid, "radius": rad, "color" : "purple"},
   { "x_axis": unit*2, "y_axis": ymid, "radius": rad, "color" : "red"}, //this is an array of objects
   { "x_axis": unit*3, "y_axis": ymid, "radius": rad, "color" : "blue" },
@@ -31,11 +31,11 @@ var jsonCircles = [ //the box it produces in is 0-200 units.
 
 //make an svg container
 var svgContainer = d3.select("body").append("div")
-						.classed("svg-container", true) //classed means css
+						//.classed("svg-container", true) //classed means css
 						.append("svg")
                         .attr("preserveAspectRatio", "xMinYMin meet") //responsive, but tiny circles too.
-                        .attr("viewBox", "0 0 600 400")
-                        .classed("svg-content-responsive", true);
+                        .attr("viewBox", "0 0 " + window.innerWidth + " " + window.innerHeight)
+                        //.classed("svg-content-responsive", true);
 
 //draw circles
 var circles = svgContainer.selectAll("circle")
@@ -56,12 +56,13 @@ var circleAttributes = circles
                         //performing transitions
                         .on('click', function(d){
                             console.log(d.x_axis); //gives me the location
-                            d.transition()
+                            d3.selectAll("circle").transition() //FUCK YEAH!
                                 .duration(1500)
                                 .delay(1000) //wait a while before you move
-                                .attr("cx" , function (d) { return d.x_axis + 30; })
+                                .attr("cx", function (d) { return d.x_axis + 30; })
                                 .transition()
-                                .attr("cy", "130");
+                                .attr("cy", function (d) { return d.y_axis + S; })
+                                console.log(d.x_axis);
                         });
                         // .transition()
                         // .duration(1500)
@@ -71,3 +72,4 @@ var circleAttributes = circles
                         // .attr("cy", "130");
                         //.each("end", function() { d3.select(this).attr("fill", "blue"); }); //at end on transition
  
+//draw all data: in frame and out of frame
