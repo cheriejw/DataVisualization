@@ -132,7 +132,6 @@ var node = svgContainer.selectAll(".node")
                                 .delay(100)
                                 .attr("cx", function (d) { d.x_axis = d.x_axis - (tem - middle); return d.x_axis; });
                         });
-
 node.append("text")
                   .attr("x", function (d) {return d.x_axis;})
                   .attr("y", function (d) {return d.y_axis + yunit;})

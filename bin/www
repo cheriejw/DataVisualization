@@ -29,9 +29,22 @@ var io = require('socket.io')(server);
 /*** Socket IO ***/
 io.on('connection', function(client){
   
-  client.emit('data', "from server");
+  // client.emit('data', "from server");
   client.on('data', function(data){
-    console.log('web send data: ' + data);
+
+    console.log('web send data: ' + data); 
+  });
+
+
+  client.on('requestWord', function(_data){
+    var spawn = require("child_process").spawn;
+    var process = spawn('python', ['public/dict.py', _data]);
+    // process.stdout.on('data', function(_data){
+    // });
+    jsonContent = readLocalFile('words/'+_data+".json", function(_data){
+      client.emit('data', _data);
+    });
+
   });
 
 
@@ -45,6 +58,21 @@ io.on('connection', function(client){
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+function readLocalFile(_path, _callback){
+  fs = require('fs')
+  fs.readFile(_path, 'utf8', function(err, data){
+    if(err){
+      readLocalFile(_path);
+      return console.log(err);
+    }
+    // console.log(data);
+    _callback(data);
+  });
+  
+}
+
 
 /**
  * Normalize a port into a number, string, or false.
