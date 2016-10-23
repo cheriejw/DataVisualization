@@ -110,7 +110,7 @@ var node = svgContainer.selectAll(".node")
   .attr("transform", function(d) { return "translate (" + d.x + "," + d.y + ")";});
 
 var sel = svgContainer.selectAll("g");
-console.log(sel);
+//console.log(sel);
     node.on('click', function(d){
 							console.log(d);
               //if y_axis is not ymid{ its the root nodes make it trans into ymid.}
