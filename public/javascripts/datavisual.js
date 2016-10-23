@@ -45,10 +45,6 @@ var jsonCircles = []; //7 circles
 
 var len = colors.length;
 
-// for(word in words){ //for a word in words
-// 	console.log(words[word]);
-// }
-
 var middle = (window.innerWidth/2);
 var unit = (middle/4); //theyre all this many spaces appart; one unit
 var rad = unit/3;
@@ -114,29 +110,35 @@ var node = svgContainer.selectAll(".node")
   .attr("transform", function(d) { return "translate (" + d.x + "," + d.y + ")";});
 
 var sel = svgContainer.selectAll("g");
-	
 console.log(sel);
-
     node.on('click', function(d){
 							console.log(d);
-                            var dom_el = document.querySelector('[ng-controller="UIController"]');
-                            var ng_el = angular.element(dom_el);
-                            var ng_el_scope = ng_el.scope();
-                            ng_el_scope.requestWord(d.word);
-                            ng_el_scope.display(d.word);
-                            //console.log(d.word); //gives me the location
-                            var tem = d.x_axis;
-                            // console.log(x);
-                            // d3.selectAll("text").transition() //FUCK YEAH!
-                            //     .duration(1500)
-                            //     .delay(100) //wait a while before you move
-                            //     // .attr("cx", function (d) { var x = d.x_axis; d.x_axis = d.x_axis + (x - middle); return d.x_axis; }) //this expands
-                            //     .attr("x", function (d) { d.x_axis = (d.x_axis - (tem - middle)); return d.x_axis; });
-                            //     // .attr("cx", shiftx(d))
+              //if y_axis is not ymid{ its the root nodes make it trans into ymid.}
+              var dom_el = document.querySelector('[ng-controller="UIController"]');
+              var ng_el = angular.element(dom_el);
+              var ng_el_scope = ng_el.scope();
+              ng_el_scope.requestWord(d.word);
+              ng_el_scope.display(d.word);
+              //console.log(d.word); //gives me the location
+              var tem = d.x_axis;
+              if (d.y_axis != ymid){
+                  console.log(d.word);
+                  d3.select(this).transition()
+                  .duration(1500)
+                  .delay(100)
+                  .attr("cy", function (d) { d.y_axis = ymid; return d.x_axis; });
+              }
+                           // console.log(x);
+              
+                           //     .duration(1500)
+                           //     .delay(100) //wait a while before you move
+                           //     // .attr("cx", function (d) { var x = d.x_axis; d.x_axis = d.x_axis + (x - middle); return d.x_axis; }) //this expands
+                           //     .attr("x", function (d) { d.x_axis = (d.x_axis - (tem - middle)); return d.x_axis; });
+                           //     // .attr("cx", shiftx(d))
                                 //.transition()
                                 //.attr("cy", function (d) { return d.y_axis + unit; })
                                 //console.log(d.x_axis);
-                            d3.selectAll("circle").transition()
+              d3.selectAll("circle").transition()
                                 .duration(1500)
                                 .delay(100)
                                 .attr("cx", function (d) { d.x_axis = d.x_axis - (tem - middle); return d.x_axis; });
