@@ -2,6 +2,13 @@ body {
   padding: 0px;
   margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100%;
+  display: block;
+}
+
+html {
+  padding: 0px;
+  height: 100%;
 }
 
 a {
