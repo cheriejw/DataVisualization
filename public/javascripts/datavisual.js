@@ -129,7 +129,14 @@ var circleAttributes = circles
                         //performing transitions
                         .on('click', function(d){
                             //console.log(d.x_axis); //gives me the location
-                            var x = d.x_axis;
+							
+							//Angular controller interfacing
+							var dom_el = document.querySelector('[ng-controller="UIController"]');
+							var ng_el = angular.element(dom_el);
+							var ng_el_scope = ng_el.scope();
+							ng_el_scope.click();
+                            
+							var x = d.x_axis;
                             console.log(x);
                             d3.selectAll("circle").transition() //FUCK YEAH!
                                 .duration(1500)
