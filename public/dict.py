@@ -16,32 +16,33 @@ def main():
 	#response = urllib2.urlopen(req)
 	#the_page = response.read()
 	#print the_page
-	dictWordContent = { "word": strWord}
+	if not os.path.isfile("/words/"+strWord+".jon"):
+		dictWordContent = { "word": strWord}
 
-	content = getHTML('http://www.dictionary.com/browse/'+ strWord)
-	if content == None: # Word doesn't exist or cannot request
-		dictWordContent  = {}
-	else:
-		soupDictionary = BeautifulSoup(content, 'html.parser')
+		content = getHTML('http://www.dictionary.com/browse/'+ strWord)
+		if content == None: # Word doesn't exist or cannot request
+			dictWordContent  = {}
+		else:
+			soupDictionary = BeautifulSoup(content, 'html.parser')
 
-		#### Thesaurus ###
-		getThesaurus(dictWordContent, soupDictionary)
+			#### Thesaurus ###
+			getThesaurus(dictWordContent, soupDictionary)
 
-		### Definition ###
-		getDefinition(dictWordContent, soupDictionary)
+			### Definition ###
+			getDefinition(dictWordContent, soupDictionary)
 
-		### Get MAP Coords ###
-		getMapOrigin(dictWordContent, soupDictionary)
+			### Get MAP Coords ###
+			getMapOrigin(dictWordContent, soupDictionary)
 
-		### Get Origin ###
-		getOrigin(dictWordContent, soupDictionary)
+			### Get Origin ###
+			getOrigin(dictWordContent, soupDictionary)
 
-		### Get Slang ###
-		#getSlang(dictWordContent, soupDictionary)
+			### Get Slang ###
+			#getSlang(dictWordContent, soupDictionary)
 
-	jsonObject = json.dumps(dictWordContent)
-	#print jsonObject
-	printToFile(strWord,jsonObject)
+		jsonObject = json.dumps(dictWordContent)
+		#print jsonObject
+		printToFile(strWord,jsonObject)
 
 
 def printToFile(_word, _json):
