@@ -3,6 +3,8 @@ var dictExplore = angular.module('dictExplore', []);
 
 dictExplore.controller('UIController', function($scope,socket){
 
+	$scope.jsonWord = null;
+
 	$scope.focusedWord = "";
 	$scope.click = function(){
 		socket.send("test");
@@ -19,6 +21,13 @@ dictExplore.controller('UIController', function($scope,socket){
 		$scope.$apply();
 	}
 
+	socket.on('json', function(_jsonObj){
+		console.log(_jsonObj);
+		// Parse json object
+		$scope.jsonWord = JSON.parse(_jsonObj);
+		$scope.$apply();
+
+	});
 
 
 });
@@ -35,9 +44,9 @@ dictExplore.service('socket', function(){
 		socket.emit(_event, _data);
 	}
 
-	socket.on('data', function(_data){
-		console.log(_data);
-	})
+	// socket.on('data', function(_data){
+	// 	console.log(_data);
+	// })
 
 
 	var on = function( _event , _callback){

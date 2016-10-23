@@ -42,7 +42,7 @@ io.on('connection', function(client){
     // process.stdout.on('data', function(_data){
     // });
     jsonContent = readLocalFile('words/'+_data+".json", function(_data){
-      client.emit('data', _data);
+      client.emit('json', _data);
     });
 
   });
