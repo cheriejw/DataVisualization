@@ -36,8 +36,8 @@ io.on('connection', function(client){
     // var process = spawn('touch', ['test.touch']);
     var process = spawn('python',["public/dict.py"]);
     process.stdout.on('data', function (_data){
-
-      console.log(JSON.parse(_data));
+      
+      // console.log(JSON.parse(_data));
     }); 
   });
 
