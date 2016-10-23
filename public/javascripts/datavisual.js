@@ -115,6 +115,11 @@ var node = svgContainer.selectAll(".node")
   .attr("class", "node")
   .attr("transform", function(d) { return "translate (" + d.x + "," + d.y + ")";})
   .on('click', function(d){
+                            var dom_el = document.querySelector('[ng-controller="UIController"]');
+                            var ng_el = angular.element(dom_el);
+                            var ng_el_scope = ng_el.scope();
+                            ng_el_scope.requestWord(d.word);
+                            ng_el_scope.display(d.word);
                             //console.log(d.word); //gives me the location
                             var tem = d.x_axis;
                             // console.log(x);

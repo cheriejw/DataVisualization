@@ -64,7 +64,7 @@ function readLocalFile(_path, _callback){
   fs = require('fs')
   fs.readFile(_path, 'utf8', function(err, data){
     if(err){
-      readLocalFile(_path);
+      // readLocalFile(_path);
       return console.log(err);
     }
     // console.log(data);

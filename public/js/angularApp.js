@@ -9,6 +9,7 @@ dictExplore.controller('UIController', function($scope,socket){
 	}
 
 	$scope.requestWord = function(_word){
+		// console.log('request');
 		socket.emit('requestWord', _word);
 	}
 
